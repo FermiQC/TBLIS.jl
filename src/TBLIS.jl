@@ -10,7 +10,7 @@ export add!
 global tblis = C_NULL
 
 function init()
-    global tblis = dlopen(joinpath(dirname(pathof(TBLIS)),"libtblis.so"))
+    global tblis = dlopen(joinpath(dirname(pathof(TBLIS)),"libtblis"))
 end
 
 
