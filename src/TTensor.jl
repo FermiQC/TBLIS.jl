@@ -45,12 +45,14 @@ function TTensor{T}(D,s) where T <: AbstractFloat
                                    pointer(strides)), n, D, lens, strides)
     if T == Float32
         tblis_init_tensor_scaled = dlsym(tblis,:tblis_init_tensor_scaled_s)
+        ccall(tblis_init_tensor_scaled, Cvoid, (Ref{TTensor{T}},Cfloat,Cuint,Ptr{Int},Ptr{T}, Ptr{Int}),
+             M, s, n, lens, D, strides)
     elseif T == Float64
         tblis_init_tensor_scaled = dlsym(tblis,:tblis_init_tensor_scaled_d)
+        ccall(tblis_init_tensor_scaled, Cvoid, (Ref{TTensor{T}},Cdouble,Cuint,Ptr{Int},Ptr{T}, Ptr{Int}),
+             M, s, n, lens, D, strides)
     else
         error("Type $T is not supported by TBLIS :(")
     end
-    ccall(tblis_init_tensor_scaled, Cvoid, (Ref{TTensor{T}},T,Cuint,Ptr{Int},Ptr{T}, Ptr{Int}),
-          M, s, n, lens, D, strides)
     return M
 end
