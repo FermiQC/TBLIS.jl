@@ -16,12 +16,21 @@ struct TTensor{T}
     stride::Array{Int}
 end
 
-"""
-    TTensor{T}(D) where T <: AbstractFloat
-
-Wraps a Julia array `D` into a TTensor that can be added, multiplied, etc. 
-"""
+function TTensor(D)
+    TTensor(D,1.0)
+end
+function TTensor(D,s)
+    TTensor{Float64}(D,s)
+end
 function TTensor{T}(D) where T <: AbstractFloat
+    TTensor{T}(D,1.0)
+end
+"""
+    TTensor{T}(D,s) where T <: AbstractFloat
+
+Wraps a Julia array `D` into a TTensor that can be added, multiplied, etc, scaled by s. 
+"""
+function TTensor{T}(D,s) where T <: AbstractFloat
     strides = [1]
     lens = collect(size(D))
     for (i,v) in enumerate(lens[1:end-1])
@@ -35,13 +44,13 @@ function TTensor{T}(D) where T <: AbstractFloat
                                    pointer(lens),
                                    pointer(strides)), n, D, lens, strides)
     if T == Float32
-        tblis_init_tensor = dlsym(tblis,:tblis_init_tensor_s)
+        tblis_init_tensor_scaled = dlsym(tblis,:tblis_init_tensor_scaled_s)
     elseif T == Float64
-        tblis_init_tensor = dlsym(tblis,:tblis_init_tensor_d)
+        tblis_init_tensor_scaled = dlsym(tblis,:tblis_init_tensor_scaled_d)
     else
         error("Type $T is not supported by TBLIS :(")
     end
-    ccall(tblis_init_tensor, Cvoid, (Ref{TTensor{T}},Cuint,Ptr{Int},Ptr{T}, Ptr{Int}),
-          M, n, lens, D, strides)
+    ccall(tblis_init_tensor_scaled, Cvoid, (Ref{TTensor{T}},T,Cuint,Ptr{Int},Ptr{T}, Ptr{Int}),
+          M, s, n, lens, D, strides)
     return M
 end
