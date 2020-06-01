@@ -10,7 +10,11 @@ export add!
 global tblis = C_NULL
 
 function init()
-    global tblis = dlopen(joinpath(dirname(pathof(TBLIS)),"libtblis"))
+    if Sys.isapple() && !isfile("/usr/local/lib/libtci.0.dylib")
+        loc = dirname(pathof(TBLIS))
+        run(`ln -s $loc/libtci.0.dylib /usr/local/lib/libtci.0.dylib`)
+    end
+    global tblis = dlopen(joinpath(dirname(pathof(TBLIS)),"libtblis.0"))
 end
 
 
