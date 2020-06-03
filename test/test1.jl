@@ -9,9 +9,9 @@ TT = Float64
 A = rand(TT,O,O,O,O)
 B = rand(TT,O,O,V,V)
 C = zeros(TT,O,O,V,V)
-tijab = TBLIS.TTensor{TT}(A)
-WmBeJ = TBLIS.TTensor{TT}(B)
-T2 = TBLIS.TTensor{TT}(C)
+tijab = TBLIS.TTensor{TT}(A,1.0)
+WmBeJ = TBLIS.TTensor{TT}(B,1.0)
+T2 = TBLIS.TTensor{TT}(C,1.0)
 
 #@tensor C[i,j,a,b] = A[i,j,k,l]*B[k,l,a,b]
 for i=1:O,j=1:O,a=1:V,b=1:V

@@ -14,7 +14,7 @@ function init()
         loc = dirname(pathof(TBLIS))
         run(`ln -s $loc/libtci.0.dylib /usr/local/lib/libtci.0.dylib`)
     end
-    global tblis = dlopen(joinpath(dirname(pathof(TBLIS)),"libtblis.0"))
+    global tblis = dlopen(joinpath(dirname(pathof(TBLIS)),"libtblis"))
 end
 
 
