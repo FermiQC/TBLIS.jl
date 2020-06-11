@@ -1,15 +1,27 @@
-language: julia
-    - 1.0
-    - 1.1
-    - 1.2
-    - 1.4
-    - nightly
 jobs:
     include:
     - os: linux
       dist: xenial
+      language: julia
+        - nightly
+      before_install: sudo apt-get install -y libhwloc5
+    - os: linux
+      language: julia
+        - 1.4
+      dist: xenial
       before_install: sudo apt-get install -y libhwloc5
     - os: linux
       dist: bionic
+      language: julia
+        - 1.4
+      dist: xenial
+      before_install: sudo apt-get install -y libhwloc5
+    - os: linux
+      dist: bionic
+      language: julia
+        - nightly
       before_install: sudo apt-get install -y libhwloc5
     - os: osx
+      language: julia
+        - nightly
+        - 1.4
