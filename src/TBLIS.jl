@@ -12,7 +12,11 @@ global tci = C_NULL
 
 function init()
     if Sys.isapple()
-        global tci = dlopen(joinpath(dirname(pathof(TBLIS)),"libtci.0"))
+        path = joinpath(dirname(pathof(TBLIS)),"libtci.0.dylib")
+        opath = "/usr/local/lib/libtci.0.dylib"
+        if !isfile(opath)
+            run(`ln -s $path $opath`)
+        end
     else
         global tci = dlopen(joinpath(dirname(pathof(TBLIS)),"libtci"))
     end
