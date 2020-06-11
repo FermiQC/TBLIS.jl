@@ -1,6 +1,4 @@
 language: julia
-	- 1.4
-	- nightly
 jobs:
     include:
     - os: linux
