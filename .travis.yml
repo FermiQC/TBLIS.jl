@@ -3,11 +3,11 @@ jobs:
     include:
     - os: linux
       dist: xenial
-      before_install: sudo apt-get install -y libhwloc5
+#      before_install: sudo apt-get install -y libhwloc5
     - os: linux
       dist: bionic
-      before_install: sudo apt-get install -y libhwloc5
+#      before_install: sudo apt-get install -y libhwloc5
     - os: linux
       dist: focal
-      before_install: sudo apt-get install -y libhwloc5
+#      before_install: sudo apt-get install -y libhwloc5
     - os: osx
