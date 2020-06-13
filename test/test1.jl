@@ -1,6 +1,6 @@
 using TBLIS
 using Test
-TBLIS.init()
+#TBLIS.init()
 
 O = 2
 V = 2
