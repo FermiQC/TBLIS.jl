@@ -22,7 +22,7 @@ function __init__()
         end
         global tblis = dlopen(joinpath(dirname(pathof(TBLIS)),"libtblis"))
     else
-        global tci = dlopen(joinpath(dirname(pathof(TBLIS)),"libtci"))
+        global tci = dlopen(tblis_jll.tci)
         global hwloc = dlopen(Hwloc_jll.libhwloc)
         global tblis = dlopen(tblis_jll.tblis)
     end
