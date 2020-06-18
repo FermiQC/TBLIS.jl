@@ -3,6 +3,7 @@ module TBLIS
 using Libdl
 using LinearAlgebra
 using Hwloc_jll
+using tblis_jll
 
 export TTensor
 export mul!
@@ -19,11 +20,12 @@ function __init__()
         if !isfile(opath)
             run(`ln -s $path $opath`)
         end
+        global tblis = dlopen(joinpath(dirname(pathof(TBLIS)),"libtblis"))
     else
         global tci = dlopen(joinpath(dirname(pathof(TBLIS)),"libtci"))
         global hwloc = dlopen(Hwloc_jll.libhwloc)
+        global tblis = dlopen(tblis_jll.tblis)
     end
-    global tblis = dlopen(joinpath(dirname(pathof(TBLIS)),"libtblis"))
 end
 
 

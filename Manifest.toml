@@ -3,6 +3,12 @@
 [[Base64]]
 uuid = "2a0f44e3-6c83-55bd-87e4-b1978d98bd5f"
 
+[[CompilerSupportLibraries_jll]]
+deps = ["Libdl", "Pkg"]
+git-tree-sha1 = "7c4f882c41faa72118841185afc58a2eb00ef612"
+uuid = "e66e0078-7015-5450-92f7-15fbd957f2ae"
+version = "0.3.3+0"
+
 [[Dates]]
 deps = ["Printf"]
 uuid = "ade2ca70-3891-5945-98fb-dc099432e06a"
@@ -74,3 +80,9 @@ uuid = "cf7118a7-6976-5b1a-9a39-7adc72f591a4"
 
 [[Unicode]]
 uuid = "4ec0a83e-493e-50e2-b9ac-8f72acf5a8f5"
+
+[[tblis_jll]]
+deps = ["CompilerSupportLibraries_jll", "Hwloc_jll", "Libdl", "Pkg"]
+git-tree-sha1 = "da48c2a3bf5ed8a144706daaa9fae26ae5e46833"
+uuid = "9c7f617c-f299-5d18-afb6-044c7798b3d0"
+version = "1.2.0+0"
