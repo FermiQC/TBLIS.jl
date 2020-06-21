@@ -8,7 +8,7 @@ struct tblis_tensor{T}
     _stride::Ptr{Cvoid}
 end
 
-struct TTensor{T}
+mutable struct TTensor{T}
     tensor::tblis_tensor{T}
     n::Cuint
     data::Array{T}
