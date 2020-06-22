@@ -11,5 +11,6 @@ Test = "8dfed614-e22c-5e08-85e1-65c5234f0b40"
 tblis_jll = "9c7f617c-f299-5d18-afb6-044c7798b3d0"
 
 [compat]
+julia = "1"
 Hwloc_jll = "2"
 tblis_jll = "1"
