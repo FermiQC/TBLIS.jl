@@ -4,6 +4,7 @@ function mul!(C::T,A::T,B::T,idx_A::String,idx_B::String,idx_C::String;nt=C_NULL
                             Ref{TTensor{T2}},Cstring,
                             Ref{TTensor{T2}},Cstring,
                             Ref{TTensor{T2}},Cstring),
+
           C_NULL,C_NULL,
           A,idx_A,
           B,idx_B,
