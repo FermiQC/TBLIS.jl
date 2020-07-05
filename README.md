@@ -1,4 +1,4 @@
-[![Build Status](https://travis-ci.com/mdav2/TBLIS.jl.svg?branch=master)](https://travis-ci.com/FermiQC/TBLIS.jl)
+[![Build Status](https://travis-ci.com/FermiQC/TBLIS.jl.svg?branch=master)](https://travis-ci.com/FermiQC/TBLIS.jl)
 # TBLIS.jl
 Julia wrapper for TBLIS tensor contraction library.
 
