@@ -15,11 +15,6 @@ global hwloc = C_NULL
 
 function __init__()
     if Sys.isapple()
-        path = joinpath(dirname(pathof(TBLIS)),"libtci.0.dylib")
-        opath = "/usr/local/lib/libtci.0.dylib"
-        if !isfile(opath)
-            run(`ln -s $path $opath`)
-        end
         global tblis = dlopen(joinpath(dirname(pathof(TBLIS)),"libtblis"))
     else
         global tci = dlopen(tblis_jll.tci)
