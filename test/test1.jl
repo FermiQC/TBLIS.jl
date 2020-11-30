@@ -29,3 +29,18 @@ TBLIS.add!(WmBeJ,T2,"ijab","ijab")
 
 @test T2.data ≈ C
 @test isapprox(_B,C,rtol=1E-10)
+
+@testset "Test changing the number of TBLIS threads" begin
+  tblis_num_threads = TBLIS.get_num_threads()
+
+  TBLIS.set_num_threads(4)
+  @test TBLIS.get_num_threads() == 4
+
+  TBLIS.set_num_threads(1)
+  @test TBLIS.get_num_threads() == 1
+
+  # Set the number of TBLIS threads back to the original value
+  TBLIS.set_num_threads(tblis_num_threads)
+  @test TBLIS.get_num_threads() == tblis_num_threads
+end
+

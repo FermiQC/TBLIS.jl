@@ -23,6 +23,17 @@ function __init__()
     end
 end
 
+function set_num_threads(n)
+    tblis_set_num_threads = dlsym(tblis, :tblis_set_num_threads)
+    ccall(tblis_set_num_threads, Cvoid, (Cuint,), n)
+    return nothing
+end
+
+function get_num_threads()
+    tblis_get_num_threads = dlsym(tblis, :tblis_get_num_threads)
+    return ccall(tblis_get_num_threads, Cint, ())
+end
+
 
 include("TTensor.jl")
 include("Ops.jl")
