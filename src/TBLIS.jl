@@ -5,6 +5,8 @@ using LinearAlgebra
 using Hwloc_jll
 using tblis_jll
 
+import LinearAlgebra: mul!
+
 export TTensor
 export mul!
 export add!
@@ -24,9 +26,12 @@ function __init__()
 end
 
 function set_num_threads(n)
+    # Previous number of Threads to be returned
+    original = get_num_threads()
+
     tblis_set_num_threads = dlsym(tblis, :tblis_set_num_threads)
     ccall(tblis_set_num_threads, Cvoid, (Cuint,), n)
-    return nothing
+    return original
 end
 
 function get_num_threads()
