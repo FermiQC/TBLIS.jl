@@ -1,7 +1,7 @@
 name = "TBLIS"
 uuid = "48530278-0828-4a49-9772-0f3830dfa1e9"
 authors = ["MattDavis <matthew.davis010@gmail.com>"]
-version = "0.1.0"
+version = "0.2.0"
 
 [deps]
 Hwloc_jll = "e33a78d0-f292-5ffc-b300-72abe9b543c8"
