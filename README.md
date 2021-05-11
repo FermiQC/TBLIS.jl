@@ -1,5 +1,5 @@
-[![Build Status](https://travis-ci.com/FermiQC/TBLIS.jl.svg?branch=master)](https://travis-ci.com/FermiQC/TBLIS.jl)
 # TBLIS.jl
+[![CI](https://github.com/FermiQC/TBLIS.jl/actions/workflows/CI.yml/badge.svg)](https://github.com/FermiQC/TBLIS.jl/actions/workflows/CI.yml)
 Julia wrapper for TBLIS tensor contraction library.
 
 > [!] Work in progress
