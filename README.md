@@ -1,9 +1,7 @@
 # TBLIS.jl
 [![CI](https://github.com/FermiQC/TBLIS.jl/actions/workflows/CI.yml/badge.svg)](https://github.com/FermiQC/TBLIS.jl/actions/workflows/CI.yml)
-Julia wrapper for TBLIS tensor contraction library.
 
-> [!] Work in progress
-> Tested on Julia nightly builds and latest stable release (1.4.2) 
+Julia wrapper for TBLIS tensor contraction library.
 
 Currently only tensor addition and multiplication are implemented - please file an issue if you need 
 other functionality from TBLIS.
