@@ -16,8 +16,9 @@ global tci = C_NULL
 global hwloc = C_NULL
 
 function __init__()
-    if false #Sys.isapple()
-        global tblis = dlopen(joinpath(dirname(pathof(TBLIS)),"libtblis"))
+    if Sys.isapple()
+        #global tblis = dlopen(joinpath(dirname(pathof(TBLIS)),"libtblis"))
+        global tblis = dlopen(joinpath(@__DIR__,"libtblis"))
     else
         global tci = dlopen(tblis_jll.tci)
         global hwloc = dlopen(Hwloc_jll.libhwloc)
