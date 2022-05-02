@@ -1,16 +1,19 @@
 # TBLIS.jl
 [![CI](https://github.com/FermiQC/TBLIS.jl/actions/workflows/CI.yml/badge.svg)](https://github.com/FermiQC/TBLIS.jl/actions/workflows/CI.yml)
 
+
+> If you are planning to use TBLIS with TensorOperations.jl a more convenient option might be the [BliContractor.jl](https://github.com/xrq-phys/BliContractor.jl) package.
 Julia wrapper for TBLIS tensor contraction library.
 
-Currently only tensor addition and multiplication are implemented - please file an issue if you need 
-other functionality from TBLIS.
+Currently only tensor addition and multiplication are implemented.
 
 ## Install
 ```
 julia>]
 pkg>add TBLIS
 ```
+
+> Due to an issue with `tblis_jll`, TBLIS is not working on MAC.
 
 ## Usage
 ```
