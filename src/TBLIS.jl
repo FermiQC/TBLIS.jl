@@ -5,6 +5,7 @@ using LinearAlgebra
 using Hwloc_jll
 using tblis_jll
 
+using LinearAlgebra: BlasFloat
 import LinearAlgebra: mul!
 
 export TTensor
