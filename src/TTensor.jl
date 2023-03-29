@@ -21,7 +21,7 @@ end
 
 Wraps a Julia array `D` scaled with `scale` into a TTensor that can be interfaced by TBLIS.
 """
-function TTensor(D::Array{T}, scale=one(T)) where T <: BlasFloat
+function TTensor{T}(D, scale=one(T)) where T <: BlasFloat
     stride_vec = collect(strides(D))
     size_vec = collect(size(D))
     n::UInt32 = length(size(D))
@@ -53,3 +53,4 @@ function TTensor(D::Array{T}, scale=one(T)) where T <: BlasFloat
     end
     return M
 end
+TTensor(D::Array{T}, s=one(T)) where {T<:BlasFloat} = TTensor{T}(D, s)

@@ -30,9 +30,9 @@ _C = zeros(TT,O,O,V,V)
 ```
 Arrays must be converted to TTensor objects. 
 ```
-A = TBLIS.TTensor{TT}(_A)
-B = TBLIS.TTensor{TT}(_B)
-C = TBLIS.TTensor{TT}(_C)
+A = TBLIS.TTensor(_A)
+B = TBLIS.TTensor(_B)
+C = TBLIS.TTensor(_C)
 ```
 This object only creates a pointer to the original data.
 ```
