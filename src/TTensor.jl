@@ -16,43 +16,41 @@ mutable struct TTensor{T}
     stride::Array{Int}
 end
 
-function TTensor(D)
-    TTensor(D,1.0)
-end
-function TTensor(D,s)
-    TTensor{Float64}(D,s)
-end
-function TTensor{T}(D) where T <: AbstractFloat
-    TTensor{T}(D,1.0)
-end
 """
-    TTensor{T}(D,s) where T <: AbstractFloat
+    TTensor(D::Array{T}, scale) where T <: AbstractFloat
 
-Wraps a Julia array `D` into a TTensor that can be added, multiplied, etc, scaled by s. 
+Wraps a Julia array `D` scaled with `scale` into a TTensor that can be interfaced by TBLIS.
 """
-function TTensor{T}(D,s) where T <: AbstractFloat
-    strides = [1]
-    lens = collect(size(D))
-    for (i,v) in enumerate(lens[1:end-1])
-        push!(strides,v*strides[i])
-    end
+function TTensor{T}(D, scale=one(T)) where T <: BlasFloat
+    stride_vec = collect(strides(D))
+    size_vec = collect(size(D))
     n::UInt32 = length(size(D))
-    M = TTensor{T}(tblis_tensor{T}(zero(Int32),zero(Int32),
+    scale = T(scale)
+    M = TTensor{T}(tblis_tensor{T}(zero(Int32), zero(Int32),
                                    0.0 + 0.0im,
                                    pointer(D),
                                    n,
-                                   pointer(lens),
-                                   pointer(strides)), n, D, lens, strides)
+                                   pointer(size_vec),
+                                   pointer(stride_vec)), n, D, size_vec, stride_vec)
     if T == Float32
         tblis_init_tensor_scaled = dlsym(tblis,:tblis_init_tensor_scaled_s)
         ccall(tblis_init_tensor_scaled, Cvoid, (Ref{TTensor{T}},Cfloat,Cuint,Ptr{Int},Ptr{T}, Ptr{Int}),
-             M, s, n, lens, D, strides)
+             M, scale, n, size_vec, D, stride_vec)
     elseif T == Float64
         tblis_init_tensor_scaled = dlsym(tblis,:tblis_init_tensor_scaled_d)
         ccall(tblis_init_tensor_scaled, Cvoid, (Ref{TTensor{T}},Cdouble,Cuint,Ptr{Int},Ptr{T}, Ptr{Int}),
-             M, s, n, lens, D, strides)
+             M, scale, n, size_vec, D, stride_vec)
+    elseif T == ComplexF32
+        tblis_init_tensor_scaled = dlsym(tblis,:tblis_init_tensor_scaled_c)
+        ccall(tblis_init_tensor_scaled, Cvoid, (Ref{TTensor{T}},ComplexF32,Cuint,Ptr{Int},Ptr{T}, Ptr{Int}),
+             M, scale, n, size_vec, D, stride_vec)
+    elseif T == ComplexF64
+        tblis_init_tensor_scaled = dlsym(tblis,:tblis_init_tensor_scaled_z)
+        ccall(tblis_init_tensor_scaled, Cvoid, (Ref{TTensor{T}},ComplexF64,Cuint,Ptr{Int},Ptr{T}, Ptr{Int}),
+             M, scale, n, size_vec, D, stride_vec)
     else
         error("Type $T is not supported by TBLIS :(")
     end
     return M
 end
+TTensor(D::Array{T}, s=one(T)) where {T<:BlasFloat} = TTensor{T}(D, s)
